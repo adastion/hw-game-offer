@@ -10,10 +10,9 @@ export function Game() {
 
   const scoresElement = Scores();
   containerElement.append(scoresElement);
-  
+
   const gridElement = Grid();
   containerElement.append(gridElement);
-
 
   return containerElement;
 }

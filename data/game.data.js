@@ -7,7 +7,15 @@ export const GRID_SIZE = {
   eightByEight: 8,
 };
 
-console.log(GRID_SIZE);
+export const GRID_SIZE = {
+  threeByThree: 3,
+  fourByFour: 4,
+  fiveByFive: 5,
+  sixBySix: 6,
+  sevenBySeven: 7,
+  eightByEight: 8,
+};
+
 export const GAME_STATE = {
   beginning: "beginning",
   game: "game",
@@ -26,13 +34,14 @@ export const OFFER_STATUSES = {
 export const data = {
   // array for cells: cell = {x,y}
   settings: {
-    rowsCount: GRID_SIZE.fiveByFive,
-    columnsCount: GRID_SIZE.fiveByFive,
+    rowsCount: 5,
+    columnsCount: 5,
     pointsToWin: 10,
     maximumMisses: 3,
     decreaseDeltaInMs: 100,
     isMuted: true,
   },
+  gridStatus: GRID_SIZE,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
