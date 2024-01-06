@@ -7,7 +7,7 @@ export const GAME_STATE = {
   game: "game",
   finishGame: {
     win: "win",
-    loss: "loss",
+    lose: "lose",
   },
 };
 
@@ -28,7 +28,7 @@ export const data = {
     isMuted: true,
   },
   gridStatus: GRID_SIZE,
-  gameStatus: GAME_STATE.beginning,
+  gameStatus: GAME_STATE.game,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
