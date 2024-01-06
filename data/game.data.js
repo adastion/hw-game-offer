@@ -28,6 +28,7 @@ export const data = {
     isMuted: true,
   },
   gridStatus: GRID_SIZE,
+  gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
