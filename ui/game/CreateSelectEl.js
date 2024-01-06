@@ -1,16 +1,12 @@
 export function CreateSelectEl(optionContent) {
   const selectElement = document.createElement("select");
 
-  console.log(optionContent);
-
-  for (let key in optionContent) {
-    console.log(key);
+  optionContent.forEach((value) => {
     const optionElement = document.createElement("option");
-    optionElement.value = key;
-    optionElement.textContent = optionContent[key];
-
+    optionElement.value = value;
+    optionElement.textContent = value;
     selectElement.append(optionElement);
-  }
+  });
 
   return selectElement;
 }

@@ -1,21 +1,7 @@
-export const GRID_SIZE = {
-  threeByThree: 3,
-  fourByFour: 4,
-  fiveByFive: 5,
-  sixBySix: 6,
-  sevenBySeven: 7,
-  eightByEight: 8,
-};
-
-export const GRID_SIZE = {
-  threeByThree: 3,
-  fourByFour: 4,
-  fiveByFive: 5,
-  sixBySix: 6,
-  sevenBySeven: 7,
-  eightByEight: 8,
-};
-
+export const GRID_SIZE = [2, 3, 4, 5, 6, 7, 8];
+export const POINTS_WIN = [20, 30, 40, 60, 80, 100];
+export const DECREASE_DELTA_IN_MS = [180, 150, 130, 110];
+export const MAX_MISSES = [3, 5, 7, 9, 11, 13];
 export const GAME_STATE = {
   beginning: "beginning",
   game: "game",
@@ -36,9 +22,9 @@ export const data = {
   settings: {
     rowsCount: 5,
     columnsCount: 5,
-    pointsToWin: 10,
-    maximumMisses: 3,
-    decreaseDeltaInMs: 100,
+    pointsToWin: POINTS_WIN,
+    maximumMisses: MAX_MISSES,
+    decreaseDeltaInMs: DECREASE_DELTA_IN_MS,
     isMuted: true,
   },
   gridStatus: GRID_SIZE,
@@ -104,7 +90,7 @@ function missOffer() {
   setTimeout(() => {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
-  }, 500);
+  }, 2000);
 }
 
 export function catchOffer() {
