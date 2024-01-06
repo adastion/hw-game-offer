@@ -1,12 +1,9 @@
 import { data } from "../../../../data/game.data.js";
+import { CreateSelectEl } from "../../CreateSelectEl.js";
 
 export function TimingAfterCatch() {
-  const selectElement = document.createElement("select");
-  const optionElement = document.createElement("option");
-
-  optionElement.name = data.settings.decreaseDeltaInMs;
-  optionElement.textContent = data.settings.decreaseDeltaInMs;
-  selectElement.append(optionElement);
+  const contentOption = data.settings.decreaseDeltaInMs;
+  const selectElement = CreateSelectEl(contentOption);
 
   return selectElement;
 }

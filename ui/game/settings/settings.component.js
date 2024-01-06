@@ -6,11 +6,11 @@ export function Settings() {
 
   containerElement.append("settings will be here");
 
-  const missesElement = MaxMisses();
-  containerElement.append(missesElement);
-
   const timingAfterCatchElement = TimingAfterCatch();
   containerElement.append(timingAfterCatchElement);
+
+  const missesElement = MaxMisses();
+  containerElement.append(missesElement);
 
   return containerElement;
 }
