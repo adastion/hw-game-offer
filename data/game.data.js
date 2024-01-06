@@ -1,3 +1,13 @@
+export const GRID_SIZE = {
+  threeByThree: 3,
+  fourByFour: 4,
+  fiveByFive: 5,
+  sixBySix: 6,
+  sevenBySeven: 7,
+  eightByEight: 8,
+};
+
+console.log(GRID_SIZE);
 export const GAME_STATE = {
   beginning: "beginning",
   game: "game",
@@ -16,8 +26,8 @@ export const OFFER_STATUSES = {
 export const data = {
   // array for cells: cell = {x,y}
   settings: {
-    rowsCount: 5,
-    columnsCount: 4,
+    rowsCount: GRID_SIZE.fiveByFive,
+    columnsCount: GRID_SIZE.fiveByFive,
     pointsToWin: 10,
     maximumMisses: 3,
     decreaseDeltaInMs: 100,
@@ -48,7 +58,6 @@ function notify() {
 
 export function subscribe(newSubscriber) {
   subscribers.push(newSubscriber);
-  console.log(subscribers.length);
 }
 
 let stepIntervalId;
@@ -56,9 +65,9 @@ let stepIntervalId;
 function runStepInterval() {
   stepIntervalId = setInterval(() => {
     missOffer();
-    moveOfferToRandomPosition(true);
+    moveOfferToRandomPosition();
     notify();
-  }, 2000);
+  }, 1000);
 }
 
 runStepInterval();
@@ -86,7 +95,7 @@ function missOffer() {
   setTimeout(() => {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
-  }, 200);
+  }, 500);
 }
 
 export function catchOffer() {

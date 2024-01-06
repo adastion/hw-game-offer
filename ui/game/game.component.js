@@ -1,18 +1,19 @@
-import {Settings} from './settings/settings.component.js'
-import {Scores} from './scores/scores.component.js'
-import {Grid} from './grid/grid.component.js'
+import { Settings } from "./settings/settings.component.js";
+import { Grid } from "./grid/grid.component.js";
+import { Scores } from "./scores/scores.component.js";
 
 export function Game() {
-    const containerElement = document.createElement('div');
-   
-    const settingsElement = Settings();
-    containerElement.append(settingsElement);
+  const containerElement = document.createElement("div");
 
-    const scoresElement = Scores();
-    containerElement.append(scoresElement);
+  const settingsElement = Settings();
+  containerElement.append(settingsElement);
 
-    const gridElement = Grid();
-    containerElement.append(gridElement);
+  const scoresElement = Scores();
+  containerElement.append(scoresElement);
+  
+  const gridElement = Grid();
+  containerElement.append(gridElement);
 
-    return containerElement;
+
+  return containerElement;
 }
