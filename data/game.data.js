@@ -10,7 +10,6 @@ export const GAME_STATE = {
     lose: "lose",
   },
 };
-
 export const OFFER_STATUSES = {
   default: "default",
   miss: "miss",
@@ -21,12 +20,11 @@ export const data = {
   settings: {
     rowsCount: 5,
     columnsCount: 5,
-    pointsToWin: POINTS_WIN,
-    maximumMisses: MAX_MISSES,
-    decreaseDeltaInMs: DECREASE_DELTA_IN_MS,
+    pointsToWin: 0,
+    maximumMisses: 0,
+    decreaseDeltaInMs: 0,
     isMuted: true,
   },
-  gridStatus: GRID_SIZE,
   gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {
@@ -55,6 +53,24 @@ export function subscribe(newSubscriber) {
   subscribers.push(newSubscriber);
 }
 
+// default start game
+function settingUpGame() {}
+
+export function defaultSettings() {
+  const grid = Math.min(...GRID_SIZE);
+  const pointsToWin = Math.min(...POINTS_WIN);
+  const decrease = Math.min(...DECREASE_DELTA_IN_MS);
+  const maxMisses = Math.max(...MAX_MISSES);
+
+  data.settings.rowsCount = grid;
+  data.settings.columnsCount = grid;
+  data.settings.pointsToWin = pointsToWin;
+  data.settings.maximumMisses = maxMisses;
+  data.settings.decreaseDeltaInMs = decrease;
+}
+
+defaultSettings();
+
 let stepIntervalId;
 
 function runStepInterval() {
@@ -79,7 +95,7 @@ function gameWin() {
 }
 
 function gameOver() {
-  if (data.score.missCount === 4) {
+  if (data.score.missCount === 3) {
     clearInterval(stepIntervalId);
     data.gameStatus = GAME_STATE.finishGame.lose;
   }
@@ -110,7 +126,6 @@ function missOffer() {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
   }, 2000);
-
   gameOver();
 }
 

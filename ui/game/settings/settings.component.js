@@ -6,8 +6,6 @@ import { MaxMisses } from "./misses/misses.component.js";
 export function Settings() {
   const containerElement = document.createElement("div");
 
-  containerElement.append("settings will be here");
-
   const gridSize = GridSize();
   containerElement.append(gridSize);
 
