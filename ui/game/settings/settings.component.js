@@ -2,6 +2,7 @@ import { GridSize } from "./grid-size/grid-size.component.js";
 import { PointsToWin } from "./points-to-win/points-to-win.component.js";
 import { TimingAfterCatch } from "./timing-after/timing-after.component.js";
 import { MaxMisses } from "./misses/misses.component.js";
+import { MuteMode } from "./mute-mode/mute-mode.component.js";
 
 export function Settings() {
   const containerElement = document.createElement("div");
@@ -17,6 +18,9 @@ export function Settings() {
 
   const missesElement = MaxMisses();
   containerElement.append(missesElement);
+
+  const muteModeElement = MuteMode();
+  containerElement.append(muteModeElement);
 
   return containerElement;
 }
