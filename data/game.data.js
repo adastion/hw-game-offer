@@ -65,19 +65,23 @@ function runStepInterval() {
   }, 1000);
 }
 
-// runStepInterval();
-
 export function start() {
   data.gameStatus = GAME_STATE.game;
   runStepInterval();
   notify();
 }
 
+function gameWin() {
+  if (data.score.caughtCount === 10) {
+    clearInterval(stepIntervalId);
+    data.gameStatus = GAME_STATE.finishGame.win;
+  }
+}
+
 function gameOver() {
   if (data.score.missCount === 4) {
     clearInterval(stepIntervalId);
     data.gameStatus = GAME_STATE.finishGame.lose;
-    notify();
   }
 }
 
@@ -125,6 +129,7 @@ export function catchOffer() {
   notify();
   clearInterval(stepIntervalId);
   runStepInterval();
+  gameWin();
 }
 
 function getRandom(N) {
