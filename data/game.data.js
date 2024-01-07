@@ -18,7 +18,6 @@ export const OFFER_STATUSES = {
 };
 
 export const data = {
-  // array for cells: cell = {x,y}
   settings: {
     rowsCount: 5,
     columnsCount: 5,
@@ -28,7 +27,7 @@ export const data = {
     isMuted: true,
   },
   gridStatus: GRID_SIZE,
-  gameStatus: GAME_STATE.game,
+  gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
@@ -41,7 +40,7 @@ export const data = {
     },
   },
   score: {
-    missCount: 3,
+    missCount: 0,
     caughtCount: 2,
   },
 };
@@ -66,7 +65,21 @@ function runStepInterval() {
   }, 1000);
 }
 
-runStepInterval();
+// runStepInterval();
+
+export function start() {
+  data.gameStatus = GAME_STATE.game;
+  runStepInterval();
+  notify();
+}
+
+function gameOver() {
+  if (data.score.missCount === 4) {
+    clearInterval(stepIntervalId);
+    data.gameStatus = GAME_STATE.finishGame.lose;
+    notify();
+  }
+}
 
 function moveOfferToRandomPosition() {
   let newX = null;
@@ -88,10 +101,13 @@ function missOffer() {
   data.coords.previous = {
     ...data.coords.current,
   };
+
   setTimeout(() => {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
   }, 2000);
+
+  gameOver();
 }
 
 export function catchOffer() {
