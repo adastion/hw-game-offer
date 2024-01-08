@@ -1,4 +1,8 @@
-import { GRID_SIZE } from "../../../../data/game.data.js";
+import {
+  GRID_SIZE,
+  getSettingsGrid,
+  setSettingsGrid,
+} from "../../../../data/game.data.js";
 import { CreateSelectEl } from "../../CreateSelectEl.js";
 
 export function GridSize() {
@@ -8,6 +12,14 @@ export function GridSize() {
   });
   const name = "Grid size";
   const selectElement = CreateSelectEl(optionContent, optionValue, name);
+
+  const currentValue = getSettingsGrid();
+  selectElement.querySelector("select").value = currentValue;
+
+  selectElement.querySelector("select").addEventListener("change", (e) => {
+    const currentValue = e.target.value;
+    setSettingsGrid(currentValue);
+  });
 
   return selectElement;
 }

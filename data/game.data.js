@@ -18,11 +18,11 @@ export const OFFER_STATUSES = {
 
 export const data = {
   settings: {
-    rowsCount: 5,
-    columnsCount: 5,
-    pointsToWin: 0,
-    maximumMisses: 0,
-    decreaseDeltaInMs: 0,
+    rowsCount: Math.min(...GRID_SIZE),
+    columnsCount: Math.min(...GRID_SIZE),
+    pointsToWin: Math.min(...POINTS_WIN),
+    maximumMisses: Math.max(...MAX_MISSES),
+    decreaseDeltaInMs: Math.min(...DECREASE_DELTA_IN_MS),
     isMuted: true,
   },
   gameStatus: GAME_STATE.beginning,
@@ -53,23 +53,24 @@ export function subscribe(newSubscriber) {
   subscribers.push(newSubscriber);
 }
 
-// default start game
-function settingUpGame() {}
-
-export function defaultSettings() {
-  const grid = Math.min(...GRID_SIZE);
-  const pointsToWin = Math.min(...POINTS_WIN);
-  const decrease = Math.min(...DECREASE_DELTA_IN_MS);
-  const maxMisses = Math.max(...MAX_MISSES);
-
+export function setSettingsGrid(grid) {
   data.settings.rowsCount = grid;
   data.settings.columnsCount = grid;
-  data.settings.pointsToWin = pointsToWin;
-  data.settings.maximumMisses = maxMisses;
-  data.settings.decreaseDeltaInMs = decrease;
+  notify();
 }
 
-defaultSettings();
+export function getSettingsGrid() {
+  return data.settings.rowsCount;
+}
+
+export function setSettingsPointsToWin(points) {
+  data.settings.pointsToWin = points;
+  notify();
+}
+
+export function getSettingsPointsToWin() {
+  return data.settings.pointsToWin;
+}
 
 let stepIntervalId;
 
@@ -78,7 +79,7 @@ function runStepInterval() {
     missOffer();
     moveOfferToRandomPosition();
     notify();
-  }, 1000);
+  }, 1500);
 }
 
 export function start() {
@@ -125,7 +126,7 @@ function missOffer() {
   setTimeout(() => {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
-  }, 2000);
+  }, 1000);
   gameOver();
 }
 
