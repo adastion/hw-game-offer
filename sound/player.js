@@ -1,18 +1,48 @@
-import { OFFER_STATUSES, data, subscribe } from "../data/game.data.js";
+import {
+  GAME_STATE,
+  OFFER_STATUSES,
+  data,
+  subscribe,
+} from "../data/game.data.js";
 
 export function Player() {
-    const catchAudio = new Audio();
-    catchAudio.src = 'assets/sounds/catch.wav'
-    //catchAudio.play();
+  const audioPath = {
+    catch: "assets/sounds/catch.wav",
+    miss: "assets/sounds/miss.wav",
+    win: "assets/sounds/win.wav",
+    lose: "assets/sounds/game-over.wav",
+  };
 
-    let prevStatus = data.offerStatus;
+  const audioPlayer = new Audio();
 
-    subscribe(() => {
-        if (data.offerStatus === OFFER_STATUSES.caught && prevStatus !== OFFER_STATUSES.caught) {
-            catchAudio.currentTime = 0;
-            catchAudio.play();
-        }
+  let prevStatus = data.offerStatus;
 
-        prevStatus = data.offerStatus;
-    })
+  subscribe(() => {
+    if (
+      data.offerStatus === OFFER_STATUSES.caught &&
+      prevStatus !== OFFER_STATUSES.caught
+    ) {
+      audioPlayer.src = audioPath.catch;
+      audioPlayer.currentTime = 0;
+      audioPlayer.play();
+    }
+
+    if (data.offerStatus === OFFER_STATUSES.miss) {
+      audioPlayer.src = audioPath.miss;
+      audioPlayer.currentTime = 0;
+      audioPlayer.play();
+    }
+
+    if (data.gameStatus === GAME_STATE.finishGame.win) {
+      audioPlayer.src = audioPath.win;
+      audioPlayer.play();
+    }
+
+    if (data.gameStatus === GAME_STATE.finishGame.lose) {
+      audioPlayer.src = audioPath.lose;
+      audioPlayer.play();
+    }
+
+    prevStatus = data.offerStatus;
+  });
 }
