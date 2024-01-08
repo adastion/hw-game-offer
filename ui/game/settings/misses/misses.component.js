@@ -1,4 +1,8 @@
-import { MAX_MISSES } from "../../../../data/game.data.js";
+import {
+  MAX_MISSES,
+  getMaxMisses,
+  setMaxMisses,
+} from "../../../../data/game.data.js";
 import { CreateSelectEl } from "../../CreateSelectEl.js";
 
 export function MaxMisses() {
@@ -7,6 +11,13 @@ export function MaxMisses() {
 
   const name = "Maximum misses";
   const selectElement = CreateSelectEl(optionContent, optionValue, name);
+
+  const currentValue = getMaxMisses();
+  selectElement.querySelector("select").value = currentValue;
+
+  selectElement.querySelector("select").addEventListener("change", (e) => {
+    setMaxMisses(e.target.value);
+  });
 
   return selectElement;
 }

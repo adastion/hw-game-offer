@@ -17,8 +17,7 @@ export function GridSize() {
   selectElement.querySelector("select").value = currentValue;
 
   selectElement.querySelector("select").addEventListener("change", (e) => {
-    const currentValue = e.target.value;
-    setSettingsGrid(currentValue);
+    setSettingsGrid(e.target.value);
   });
 
   return selectElement;

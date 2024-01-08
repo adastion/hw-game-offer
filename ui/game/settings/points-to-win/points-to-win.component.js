@@ -1,4 +1,8 @@
-import { POINTS_WIN } from "../../../../data/game.data.js";
+import {
+  POINTS_WIN,
+  getSettingsPointsToWin,
+  setSettingsPointsToWin,
+} from "../../../../data/game.data.js";
 import { CreateSelectEl } from "../../CreateSelectEl.js";
 
 export function PointsToWin() {
@@ -8,6 +12,13 @@ export function PointsToWin() {
   });
   const name = "Points to win";
   const selectElement = CreateSelectEl(optionContent, optionValue, name);
+
+  const currentValue = getSettingsPointsToWin();
+  selectElement.querySelector("select").value = currentValue;
+
+  selectElement.querySelector("select").addEventListener("change", (e) => {
+    setSettingsPointsToWin(e.target.value);
+  });
 
   return selectElement;
 }

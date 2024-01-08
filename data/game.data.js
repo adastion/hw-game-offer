@@ -1,6 +1,6 @@
 export const GRID_SIZE = [2, 3, 4, 5, 6, 7, 8];
-export const POINTS_WIN = [20, 30, 40, 60, 80, 100];
-export const DECREASE_DELTA_IN_MS = [180, 150, 130, 110];
+export const POINTS_WIN = [10, 20, 30, 40, 60, 80, 100];
+export const DECREASE_DELTA_IN_MS = [180, 150, 130, 110, 90, 70];
 export const MAX_MISSES = [3, 5, 7, 9, 11, 13];
 export const GAME_STATE = {
   beginning: "beginning",
@@ -21,8 +21,8 @@ export const data = {
     rowsCount: Math.min(...GRID_SIZE),
     columnsCount: Math.min(...GRID_SIZE),
     pointsToWin: Math.min(...POINTS_WIN),
-    maximumMisses: Math.max(...MAX_MISSES),
-    decreaseDeltaInMs: Math.min(...DECREASE_DELTA_IN_MS),
+    maximumMisses: Math.min(...MAX_MISSES),
+    decreaseDeltaInMs: Math.max(...DECREASE_DELTA_IN_MS),
     isMuted: true,
   },
   gameStatus: GAME_STATE.beginning,
@@ -72,6 +72,24 @@ export function getSettingsPointsToWin() {
   return data.settings.pointsToWin;
 }
 
+export function setTimeInterval(time) {
+  data.settings.decreaseDeltaInMs = time;
+  notify();
+}
+
+export function getTimeInterval() {
+  return data.settings.decreaseDeltaInMs;
+}
+
+export function setMaxMisses(miss) {
+  data.settings.maximumMisses = miss;
+  notify();
+}
+
+export function getMaxMisses() {
+  return data.settings.maximumMisses;
+}
+
 let stepIntervalId;
 
 function runStepInterval() {
@@ -79,7 +97,7 @@ function runStepInterval() {
     missOffer();
     moveOfferToRandomPosition();
     notify();
-  }, 1500);
+  }, data.settings.decreaseDeltaInMs * 10);
 }
 
 export function start() {
@@ -89,14 +107,14 @@ export function start() {
 }
 
 function gameWin() {
-  if (data.score.caughtCount === 10) {
+  if (data.score.caughtCount === data.settings.pointsToWin) {
     clearInterval(stepIntervalId);
     data.gameStatus = GAME_STATE.finishGame.win;
   }
 }
 
 function gameOver() {
-  if (data.score.missCount === 3) {
+  if (data.score.missCount === data.settings.maximumMisses) {
     clearInterval(stepIntervalId);
     data.gameStatus = GAME_STATE.finishGame.lose;
   }
@@ -126,7 +144,7 @@ function missOffer() {
   setTimeout(() => {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
-  }, 1000);
+  }, (data.settings.decreaseDeltaInMs - 100) * 10);
   gameOver();
 }
 
@@ -139,7 +157,7 @@ export function catchOffer() {
   setTimeout(() => {
     data.offerStatus = OFFER_STATUSES.default;
     notify();
-  }, 200);
+  }, (data.settings.decreaseDeltaInMs - 100) * 10);
 
   moveOfferToRandomPosition();
   notify();
