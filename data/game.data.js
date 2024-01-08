@@ -2,6 +2,7 @@ export const GRID_SIZE = [2, 3, 4, 5, 6, 7, 8];
 export const POINTS_WIN = [10, 20, 30, 40, 60, 80, 100];
 export const DECREASE_DELTA_IN_MS = [180, 150, 130, 110, 90, 70];
 export const MAX_MISSES = [3, 5, 7, 9, 11, 13];
+export const SWITCHING_SOUNDS = { on: true, off: false };
 export const GAME_STATE = {
   beginning: "beginning",
   game: "game",
@@ -23,7 +24,7 @@ export const data = {
     pointsToWin: Math.min(...POINTS_WIN),
     maximumMisses: Math.min(...MAX_MISSES),
     decreaseDeltaInMs: Math.max(...DECREASE_DELTA_IN_MS),
-    isMuted: true,
+    isMuted: SWITCHING_SOUNDS.off,
   },
   gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
@@ -51,6 +52,15 @@ function notify() {
 
 export function subscribe(newSubscriber) {
   subscribers.push(newSubscriber);
+}
+
+export function setStatusSounds(state) {
+  data.settings.isMuted = state;
+  notify();
+}
+
+export function getStatusSounds() {
+  return data.settings.isMuted;
 }
 
 export function setSettingsGrid(grid) {

@@ -1,12 +1,12 @@
-import { Player } from "./sound/player.js";
+import { GAME_STATE, data, subscribe } from "./data/game.data.js";
+import { playSounds } from "./play-sounds/playsounds.js";
 import { Game } from "./ui/game/game.component.js";
 import { Settings } from "./ui/game/settings/settings.component.js";
+import { LoseGame } from "./ui/lose-out/lose-out.component.js";
 import { StartGeme } from "./ui/start/start.component.js";
 import { WinGame } from "./ui/winning/winning.component.js";
-import { LoseGame } from "./ui/lose-out/lose-out.component.js";
-import { GAME_STATE, data, subscribe } from "./data/game.data.js";
 
-Player();
+subscribe(playSounds);
 
 function renderApp() {
   document.body.innerHTML = "";

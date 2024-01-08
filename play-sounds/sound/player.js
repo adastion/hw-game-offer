@@ -3,7 +3,7 @@ import {
   OFFER_STATUSES,
   data,
   subscribe,
-} from "../data/game.data.js";
+} from "../../data/game.data.js";
 
 export function Player() {
   const audioPath = {
