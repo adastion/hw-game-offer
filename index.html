@@ -4,17 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
     <title>cath the offer</title>
-    <!-- <style>
+    <style>
         table td {
             border: 1px solid black;
             width: 80px;
             height: 80px;
         }
-    </style> -->
+    </style>
 </head>
 
 <body>
+    <body>
+        <div class="wrapper">
+          <header class="header">
+            <div class="container">
+              <ul class="settings">
+                <li class="setting">
+                  <label for=""> grid size </label>
+                  <select class="select">
+                    <option value="">grid</option>
+                  </select>
+                </li>
+                <li class="setting">
+                  <label for=""> Points to win </label>
+                  <select class="select">
+                    <option value="">Points to win</option>
+                  </select>
+                </li>
+                <li class="setting">
+                  <label for=""> ms after the catch </label>
+                  <select class="select">
+                    <option value="">ms after the catch</option>
+                  </select>
+                </li>
+                <li class="setting">
+                  <label for=""> Maximum misses </label>
+                  <select class="select">
+                    <option value="">Maximum misses</option>
+                  </select>
+                </li>
+                <li class="setting">
+                  <label for=""> Mute mode </label>
+                  <input type="checkbox" />
+                </li>
+              </ul>
+            </div>
+          </header>
+          <main class="content">
+            <div class="container">
+              <div class="score">
+                <div class="score__catch">
+                  <h3 class="score__title">Catch:</h3>
+                  <span class="score__score"></span>
+                </div>
+                <div class="score__misses">
+                  <h3 class="score__title">Miss:</h3>
+                  <span class="score__score"></span>
+                </div>
+              </div>
+              <ul class="content__grid">
+                <li class="content__cell">
+                  <img src="src/assets/images/offer.svg" alt="icon" />
+                </li>
+                <li class="content__cell">
+                  <img src="src/assets/images/missed-offer.svg" alt="icon" />
+                </li>
+                <li class="content__cell">
+                  <img src="src/assets/images/caught-offer.svg" alt="icon" />
+                </li>
+                <li class="content__cell"></li>
+                <li class="content__cell"></li>
+                <li class="content__cell"></li>
+                <li class="content__cell"></li>
+                <li class="content__cell"></li>
+                <li class="content__cell"></li>
+              </ul>
+            </div>
+          </main>
+        </div>
     <!-- <script src="index.js" type="module"></script> -->
 </body>
 
