@@ -1,4 +1,5 @@
 import { data, subscribe } from "../../../data/game.data.js";
+
 export function Scores() {
 
     subscribe(() => {

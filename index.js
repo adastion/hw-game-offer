@@ -1,10 +1,10 @@
-import { GAME_STATE, data, subscribe } from "./data/game.data.js";
-import { playSounds } from "./play-sounds/playsounds.js";
-import { Game } from "./ui/game/game.component.js";
-import { Settings } from "./ui/game/settings/settings.component.js";
-import { LoseGame } from "./ui/lose-out/lose-out.component.js";
-import { StartGeme } from "./ui/start/start.component.js";
-import { WinGame } from "./ui/winning/winning.component.js";
+import { GAME_STATE, data, subscribe } from "./src/data/game.data.js";
+import { playSounds } from "./src/play-sounds/playsounds.js";
+import { Game } from "./src/ui/game/game.component.js";
+import { Settings } from "./src/ui/game/settings/settings.component.js";
+import { LoseGame } from "./src/ui/lose-out/lose-out.component.js";
+import { StartGeme } from "./src/ui/start/start.component.js";
+import { WinGame } from "./src/ui/winning/winning.component.js";
 
 subscribe(playSounds);
 
