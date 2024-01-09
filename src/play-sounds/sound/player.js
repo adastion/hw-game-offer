@@ -7,10 +7,10 @@ import {
 
 export function Player() {
   const audioPath = {
-    catch: "assets/sounds/catch.wav",
-    miss: "assets/sounds/miss.wav",
-    win: "assets/sounds/win.wav",
-    lose: "assets/sounds/game-over.wav",
+    catch: "src/assets/sounds/catch.wav",
+    miss: "src/assets/sounds/miss.wav",
+    win: "src/assets/sounds/win.wav",
+    lose: "src/assets/sounds/game-over.wav",
   };
 
   const audioPlayer = new Audio();
