@@ -33,7 +33,7 @@ body {
 
 .wrapper {
   padding: 24px 0;
-  background: url(assets/images/background-part.png),
+  background: url(src/assets/images/background-part.png),
     linear-gradient(160deg, var(--bg_gardient_1), var(--bg_gardient_2));
   height: 100%;
 }
