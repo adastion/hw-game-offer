@@ -1,4 +1,4 @@
-export const GRID_SIZE = [2, 3, 4, 5, 6, 7, 8];
+export const GRID_SIZE = [3, 4, 5, 6, 7, 8];
 export const POINTS_WIN = [10, 20, 30, 40, 60, 80, 100];
 export const DECREASE_DELTA_IN_MS = [180, 150, 130, 110, 90, 70];
 export const MAX_MISSES = [3, 5, 7, 9, 11, 13];
