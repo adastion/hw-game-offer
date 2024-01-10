@@ -11,47 +11,41 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="index.css" />
-    <title>cath the offer</title>
-    <style>
-        table td {
-            border: 1px solid black;
-            width: 80px;
-            height: 80px;
-        }
-    </style>
+    <title>Cath the offer</title>
+   
 </head>
 
 <body>
     <body>
-        <div class="wrapper">
+        <div id="root" class="wrapper">
           <header class="header">
             <div class="container">
               <ul class="settings">
-                <li class="setting">
+                <li class="settings__setting">
                   <label for=""> grid size </label>
-                  <select class="select">
+                  <select class="settings__select">
                     <option value="">grid</option>
                   </select>
                 </li>
                 <li class="setting">
                   <label for=""> Points to win </label>
-                  <select class="select">
+                  <select class="settings__select">
                     <option value="">Points to win</option>
                   </select>
                 </li>
                 <li class="setting">
                   <label for=""> ms after the catch </label>
-                  <select class="select">
+                  <select class="settings__select">
                     <option value="">ms after the catch</option>
                   </select>
                 </li>
                 <li class="setting">
                   <label for=""> Maximum misses </label>
-                  <select class="select">
+                  <select class="settings__select">
                     <option value="">Maximum misses</option>
                   </select>
                 </li>
-                <li class="setting">
+                <li class="settings__setting">
                   <label for=""> Mute mode </label>
                   <input type="checkbox" />
                 </li>
@@ -61,13 +55,13 @@
           <main class="content">
             <div class="container">
               <div class="score">
-                <div class="score__catch">
+                <div class="score__item">
                   <h3 class="score__title">Catch:</h3>
-                  <span class="score__score"></span>
+                  <span class="score__score">0</span>
                 </div>
-                <div class="score__misses">
+                <div class="score__item">
                   <h3 class="score__title">Miss:</h3>
-                  <span class="score__score"></span>
+                  <span class="score__score">0</span>
                 </div>
               </div>
               <ul class="content__grid">
@@ -90,7 +84,7 @@
             </div>
           </main>
         </div>
-    <!-- <script src="index.js" type="module"></script> -->
+    <script src="index.js" type="module"></script>
 </body>
 
 </html>

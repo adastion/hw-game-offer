@@ -6,31 +6,37 @@ import { LoseGame } from "./src/ui/lose-out/lose-out.component.js";
 import { StartGeme } from "./src/ui/start/start.component.js";
 import { WinGame } from "./src/ui/winning/winning.component.js";
 
+const rootElement = document.querySelector("#root");
+rootElement.classList.add("wrapper");
+
 subscribe(playSounds);
 
 function renderApp() {
-  document.body.innerHTML = "";
+  rootElement.innerHTML = "";
 
   const settingsElement = Settings();
-  document.body.append(settingsElement);
+  rootElement.append(settingsElement);
 
   if (data.gameStatus === GAME_STATE.beginning) {
     const beginning = StartGeme();
-    document.body.append(beginning);
+    rootElement.append(beginning);
     subscribe(renderApp);
   }
 
   if (data.gameStatus === GAME_STATE.game) {
     const gameEl = Game();
-    document.body.append(gameEl);
+    const mainElement = document.createElement("main");
+    mainElement.classList.add("content");
+    mainElement.append(gameEl);
+    rootElement.append(mainElement);
   }
   if (data.gameStatus === GAME_STATE.finishGame.win) {
     const winGame = WinGame();
-    document.body.append(winGame);
+    rootElement.append(winGame);
   }
   if (data.gameStatus === GAME_STATE.finishGame.lose) {
     const loseGame = LoseGame();
-    document.body.append(loseGame);
+    rootElement.append(loseGame);
   }
 }
 

@@ -1,0 +1,13 @@
+.select {
+  background: none;
+  padding: 5px 15px;
+  border: 1px solid var(--accent);
+  border-radius: 30px;
+  color: var(--secondary);
+  text-transform: lowercase;
+  font-size: 1.6rem;
+}
+
+.select > option {
+  border-radius: 20px;
+}
