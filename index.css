@@ -1,0 +1,44 @@
+@import url("src/styles/wrapper.css");
+@import url("src/styles/container.css");
+@import url("src/styles/buttons.css");
+@import url("src/styles/content.css");
+@import url("src/styles/header.css");
+@import url("src/styles/scores.css");
+@import url("src/styles/select.css");
+@import url("src/styles/settings.css");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul[class] {
+  list-style: none;
+}
+
+:root {
+  --primary: #528cde;
+  --primary_dark: #3676bc;
+  --secondary: #fff;
+  --accent: #54bae0;
+  --buttons: #b0c255;
+  --bg_gardient_1: #285bae;
+  --bg_gardient_2: #4ca1d2;
+}
+
+html {
+  font-size: 10px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: var(--secondary);
+}

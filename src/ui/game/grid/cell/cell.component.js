@@ -7,6 +7,7 @@ export function Cell(x, y) {
     })
 
     const cellEl = document.createElement('td');
+    cellEl.classList.add("content__cell")
 
     update(x, y, cellEl);
 
