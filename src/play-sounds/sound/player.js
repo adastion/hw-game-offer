@@ -22,23 +22,25 @@ export function Player() {
       data.offerStatus === OFFER_STATUSES.caught &&
       prevStatus !== OFFER_STATUSES.caught
     ) {
-      audioPlayer.src = audioPath.catch;
       audioPlayer.currentTime = 0;
+      audioPlayer.src = audioPath.catch;
       audioPlayer.play();
     }
 
     if (data.offerStatus === OFFER_STATUSES.miss) {
-      audioPlayer.src = audioPath.miss;
       audioPlayer.currentTime = 0;
+      audioPlayer.src = audioPath.miss;
       audioPlayer.play();
     }
 
     if (data.gameStatus === GAME_STATE.finishGame.win) {
       audioPlayer.src = audioPath.win;
+      audioPlayer.currentTime = 0;
       audioPlayer.play();
     }
 
     if (data.gameStatus === GAME_STATE.finishGame.lose) {
+      audioPlayer.currentTime = 0;
       audioPlayer.src = audioPath.lose;
       audioPlayer.play();
     }

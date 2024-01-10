@@ -9,35 +9,41 @@ import { WinGame } from "./src/ui/winning/winning.component.js";
 const rootElement = document.querySelector("#root");
 rootElement.classList.add("wrapper");
 
-subscribe(playSounds);
+renderApp();
+playSounds();
 
 function renderApp() {
-  rootElement.innerHTML = "";
-
   const settingsElement = Settings();
   rootElement.append(settingsElement);
 
+  const mainElement = document.createElement("main");
+  mainElement.classList.add("content");
+  rootElement.append(mainElement);
+
+  subscribe(() => {
+    mainElement.innerHTML = "";
+    update(mainElement);
+  });
+
+  update(mainElement);
+}
+
+function update(parentElement) {
   if (data.gameStatus === GAME_STATE.beginning) {
     const beginning = StartGeme();
-    rootElement.append(beginning);
-    subscribe(renderApp);
+    parentElement.append(beginning);
   }
 
   if (data.gameStatus === GAME_STATE.game) {
     const gameEl = Game();
-    const mainElement = document.createElement("main");
-    mainElement.classList.add("content");
-    mainElement.append(gameEl);
-    rootElement.append(mainElement);
+    parentElement.append(gameEl);
   }
   if (data.gameStatus === GAME_STATE.finishGame.win) {
     const winGame = WinGame();
-    rootElement.append(winGame);
+    parentElement.append(winGame);
   }
   if (data.gameStatus === GAME_STATE.finishGame.lose) {
     const loseGame = LoseGame();
-    rootElement.append(loseGame);
+    parentElement.append(loseGame);
   }
 }
-
-renderApp();

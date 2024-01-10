@@ -26,4 +26,5 @@
 
 .content__cell img {
   margin: 6px;
+  cursor: pointer;
 }
