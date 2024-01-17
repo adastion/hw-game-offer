@@ -26,6 +26,7 @@ export const data = {
     decreaseDeltaInMs: Math.max(...DECREASE_DELTA_IN_MS),
     isMuted: SWITCHING_SOUNDS.off,
   },
+  gemeTime: 0,
   gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {

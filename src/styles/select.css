@@ -1,5 +1,5 @@
 .select {
-  background: none;
+  background: var(--primary);
   padding: 5px 15px;
   border: 1px solid var(--accent);
   border-radius: 30px;
@@ -10,4 +10,7 @@
 
 .select > option {
   border-radius: 20px;
+  background: inherit;
 }
+
+
