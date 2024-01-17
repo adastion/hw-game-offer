@@ -10,7 +10,7 @@ const rootElement = document.querySelector("#root");
 rootElement.classList.add("wrapper");
 
 renderApp();
-playSounds();
+subscribe(playSounds);
 
 function renderApp() {
   const settingsElement = Settings();

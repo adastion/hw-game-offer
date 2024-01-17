@@ -179,3 +179,8 @@ export function catchOffer() {
 function getRandom(N) {
   return Math.floor(Math.random() * (N + 1));
 }
+
+export function newStartGame() {
+  data.gameStatus = GAME_STATE.game;
+  notify();
+}
