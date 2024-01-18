@@ -182,6 +182,6 @@ function getRandom(N) {
 }
 
 export function newStartGame() {
-  data.gameStatus = GAME_STATE.game;
+  data.gameStatus = GAME_STATE.beginning;
   notify();
 }

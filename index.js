@@ -10,7 +10,7 @@ const rootElement = document.querySelector("#root");
 rootElement.classList.add("wrapper");
 
 renderApp();
-subscribe(playSounds);
+playSounds();
 
 function renderApp() {
   const settingsElement = Settings();
@@ -28,7 +28,7 @@ function renderApp() {
   update(mainElement);
 }
 
-function update(parentElement) {
+function update(parentElement, clearSettingElement) {
   if (data.gameStatus === GAME_STATE.beginning) {
     const beginning = StartGeme();
     parentElement.append(beginning);
