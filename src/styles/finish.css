@@ -1,0 +1,79 @@
+.finish {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+
+  margin-top: 200px;
+}
+
+.finish::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  width: 144px;
+  height: 144px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 10px var(--secondary);
+  border: 6px solid var(--primary_dark);
+  z-index: 20;
+}
+
+.finish.finish--lose::before {
+  background: url("../assets/images/icon-lose.svg"), var(--primary_dark);
+  background-repeat: no-repeat;
+  background-position: initial;
+  background-size: 100%;
+}
+
+.finish.finish--win::before {
+  background: url("../assets/images/icon-win.svg"), var(--primary_dark);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: initial;
+}
+
+.finish__content {
+  background: var(--secondary);
+  border-radius: 10px;
+  padding: 24px;
+  color: var(--primary_dark);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.finish__title {
+  text-transform: capitalize;
+  font-size: 48px;
+  font-weight: 600;
+  margin-top: 48px;
+}
+.finish__subtitle {
+  margin: 6px 0 24px;
+}
+
+.finish__results {
+  display: grid;
+  gap: 24px;
+}
+
+.finish__results + * {
+  margin-top: 30px;
+  text-transform: capitalize`;
+}
+
+.finish__results li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.finish__name {
+}
+
+.finish__value {
+  font-weight: 600;
+}

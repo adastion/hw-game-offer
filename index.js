@@ -28,7 +28,7 @@ function renderApp() {
   update(mainElement);
 }
 
-function update(parentElement, clearSettingElement) {
+function update(parentElement) {
   if (data.gameStatus === GAME_STATE.beginning) {
     const beginning = StartGeme();
     parentElement.append(beginning);
