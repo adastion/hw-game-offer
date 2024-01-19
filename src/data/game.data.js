@@ -24,7 +24,7 @@ export const data = {
     pointsToWin: Math.min(...POINTS_WIN),
     maximumMisses: Math.min(...MAX_MISSES),
     decreaseDeltaInMs: Math.max(...DECREASE_DELTA_IN_MS),
-    isMuted: SWITCHING_SOUNDS.off,
+    isMuted: SWITCHING_SOUNDS.on,
   },
   gemeTime: 0,
   gameStatus: GAME_STATE.finishGame.lose,
