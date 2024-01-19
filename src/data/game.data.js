@@ -27,7 +27,7 @@ export const data = {
     isMuted: SWITCHING_SOUNDS.off,
   },
   gemeTime: 0,
-  gameStatus: GAME_STATE.beginning,
+  gameStatus: GAME_STATE.finishGame.lose,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
