@@ -20,8 +20,33 @@
   width: 33.3333%;
 }
 
-@media screen and (max-width: 768px) {
+.select__title--mute-mod {
+  background: url("../assets/images/icon-mute-off.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border-radius: 30px;
+  border: 1px solid var(--accent);
+  width: 36px;
+  height: 20px;
+  transition: 0.3s ease-in-out;
+}
 
+.select__title--mute-mod.active {
+  background: url("../assets/images/icon-mute-on.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.select__title--mute-mod:hover {
+  box-shadow: inset 0 0 5px 2px var(--buttons);
+}
+
+.select__title--mute-mod input {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
   .select__title {
     width: 100%;
   }
