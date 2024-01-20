@@ -114,9 +114,16 @@ function runStepInterval() {
 
 export function start() {
   data.gameStatus = GAME_STATE.game;
+  timeCounter();
+  runStepInterval();
+  notify();
+}
 
+function timeCounter() {
+  data.gemeTime = 0;
   let minutes = 0;
   let seconds = 0;
+
   setInterval(() => {
     seconds++;
 
@@ -127,8 +134,6 @@ export function start() {
 
     data.gemeTime = `${minutes}m ${seconds}s`;
   }, 1000);
-  runStepInterval();
-  notify();
 }
 
 export function getGameTime() {
