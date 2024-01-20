@@ -3,12 +3,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: end;
-  gap: 20;
+  gap: 10px;
   position: relative;
   z-index: 3;
   color: var(--primary_dark);
   width: 300px;
-  height: 420px;
+  height: 520px;
 
   background-repeat: no-repeat;
   background-position: center;
@@ -16,34 +16,7 @@
 
   margin-top: 100px;
   margin-bottom: auto;
-  padding-bottom: 30px;
-}
-/* 
-.finish::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  width: 144px;
-  height: 144px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: inset 0 0 0 10px var(--secondary);
-  border: 6px solid var(--primary_dark);
-  z-index: 20;
-} */
-
-.finish.finish--lose::before {
-  background: url("../assets/images/icon-lose.svg"), var(--primary_dark);
-  background-repeat: no-repeat;
-  background-position: initial;
-  background-size: 100%;
-}
-
-.finish.finish--win::before {
-  background: url("../assets/images/icon-win.svg"), var(--primary_dark);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: initial;
+  padding: 30px;
 }
 
 .finish__content {
@@ -60,15 +33,16 @@
   text-transform: capitalize;
   font-size: 48px;
   font-weight: 600;
-
 }
 .finish__subtitle {
   margin: 6px 0 24px;
+  font-size: 18px;
 }
 
 .finish__results {
   display: grid;
   gap: 24px;
+  width: 220px;
 }
 
 .finish__results + * {
@@ -79,11 +53,14 @@
 .finish__results li {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .finish__name {
+  font-size: 18px;
 }
 
 .finish__value {
+  font-size: 18px;
   font-weight: 600;
 }

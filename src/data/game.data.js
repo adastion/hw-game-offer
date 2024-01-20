@@ -24,10 +24,10 @@ export const data = {
     pointsToWin: Math.min(...POINTS_WIN),
     maximumMisses: Math.min(...MAX_MISSES),
     decreaseDeltaInMs: Math.max(...DECREASE_DELTA_IN_MS),
-    isMuted: SWITCHING_SOUNDS.on,
+    isMuted: SWITCHING_SOUNDS.off,
   },
-  gemeTime: 0,
-  gameStatus: GAME_STATE.finishGame.lose,
+  gemeTime: "",
+  gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
@@ -55,13 +55,14 @@ export function subscribe(newSubscriber) {
   subscribers.push(newSubscriber);
 }
 
-export function setStatusSounds(state) {
-  data.settings.isMuted = state;
-  notify();
-}
-
 export function getStatusSounds() {
   return data.settings.isMuted;
+}
+
+export function setStatusSounds(state) {
+  data.settings.isMuted = state;
+
+  notify();
 }
 
 export function setSettingsGrid(grid) {
@@ -113,8 +114,25 @@ function runStepInterval() {
 
 export function start() {
   data.gameStatus = GAME_STATE.game;
+
+  let minutes = 0;
+  let seconds = 0;
+  setInterval(() => {
+    seconds++;
+
+    if (seconds === 60) {
+      minutes++;
+      seconds = 0;
+    }
+
+    data.gemeTime = `${minutes}m ${seconds}s`;
+  }, 1000);
   runStepInterval();
   notify();
+}
+
+export function getGameTime() {
+  return data.gemeTime;
 }
 
 function gameWin() {
@@ -183,5 +201,11 @@ function getRandom(N) {
 
 export function newStartGame() {
   data.gameStatus = GAME_STATE.beginning;
+  data.score.caughtCount = 0;
+  data.score.missCount = 0;
   notify();
+}
+
+export function getFinishResult() {
+  return data.score;
 }

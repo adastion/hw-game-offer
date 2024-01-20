@@ -1,7 +1,6 @@
 import {
   GAME_STATE,
   OFFER_STATUSES,
-  SWITCHING_SOUNDS,
   data,
   subscribe,
 } from "../data/game.data.js";
@@ -26,40 +25,37 @@ export function playSounds() {
 }
 
 function update(audioPath, audioPlayer, prevStatus) {
+  const isMuted = data.settings.isMuted;
+
   if (
     data.offerStatus === OFFER_STATUSES.caught &&
     prevStatus !== OFFER_STATUSES.caught &&
-    data.settings.isMuted === SWITCHING_SOUNDS.off
+    !isMuted
   ) {
     audioPlayer.currentTime = 0;
     audioPlayer.src = audioPath.catch;
+    audioPlayer.autoplay = true;
     audioPlayer.play();
   }
 
-  if (
-    data.offerStatus === OFFER_STATUSES.miss &&
-    data.settings.isMuted === SWITCHING_SOUNDS.off
-  ) {
+  if (data.offerStatus === OFFER_STATUSES.miss && !isMuted) {
     audioPlayer.currentTime = 0;
     audioPlayer.src = audioPath.miss;
+    audioPlayer.autoplay = true;
     audioPlayer.play();
   }
 
-  if (
-    data.gameStatus === GAME_STATE.finishGame.win &&
-    data.settings.isMuted === SWITCHING_SOUNDS.off
-  ) {
+  if (data.gameStatus === GAME_STATE.finishGame.win && !isMuted) {
     audioPlayer.src = audioPath.win;
     audioPlayer.currentTime = 0;
+    audioPlayer.autoplay = true;
     audioPlayer.play();
   }
 
-  if (
-    data.gameStatus === GAME_STATE.finishGame.lose &&
-    data.settings.isMuted === SWITCHING_SOUNDS.off
-  ) {
+  if (data.gameStatus === GAME_STATE.finishGame.lose && !isMuted) {
     audioPlayer.currentTime = 0;
     audioPlayer.src = audioPath.lose;
+    audioPlayer.autoplay = true;
     audioPlayer.play();
   }
 

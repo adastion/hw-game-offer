@@ -5,9 +5,7 @@ export function MuteMode() {
   muteModeElement.type = "checkbox";
 
   muteModeElement.addEventListener("change", (e) => {
-    if (e.target.checked) {
-      setStatusSounds(e.target.checked);
-    }
+    setStatusSounds(e.target.checked);
   });
 
   return muteModeElement;

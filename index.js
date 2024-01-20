@@ -1,10 +1,9 @@
 import { GAME_STATE, data, subscribe } from "./src/data/game.data.js";
 import { playSounds } from "./src/play-sounds/playsounds.js";
+import { FinishGame } from "./src/ui/Finish/finish.component.js";
 import { Game } from "./src/ui/game/game.component.js";
 import { Settings } from "./src/ui/game/settings/settings.component.js";
-import { LoseGame } from "./src/ui/lose-out/lose-out.component.js";
 import { StartGeme } from "./src/ui/start/start.component.js";
-import { WinGame } from "./src/ui/winning/winning.component.js";
 
 const rootElement = document.querySelector("#root");
 rootElement.classList.add("wrapper");
@@ -39,11 +38,11 @@ function update(parentElement) {
     parentElement.append(gameEl);
   }
   if (data.gameStatus === GAME_STATE.finishGame.win) {
-    const winGame = WinGame();
+    const winGame = FinishGame();
     parentElement.append(winGame);
   }
   if (data.gameStatus === GAME_STATE.finishGame.lose) {
-    const loseGame = LoseGame();
+    const loseGame = FinishGame();
     parentElement.append(loseGame);
   }
 }
