@@ -41,7 +41,7 @@ export const data = {
   },
   score: {
     missCount: 0,
-    caughtCount: 2,
+    caughtCount: 0,
   },
 };
 
@@ -124,15 +124,16 @@ function timeCounter() {
   let minutes = 0;
   let seconds = 0;
 
-  setInterval(() => {
+  const timer = setInterval(() => {
     seconds++;
-
+    
     if (seconds === 60) {
       minutes++;
       seconds = 0;
     }
-
+    
     data.gemeTime = `${minutes}m ${seconds}s`;
+    // clearInterval(timer)
   }, 1000);
 }
 

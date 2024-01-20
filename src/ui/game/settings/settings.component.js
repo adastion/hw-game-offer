@@ -6,6 +6,7 @@ import { TimingAfterCatch } from "./timing-after/timing-after.component.js";
 
 export function Settings() {
   const containerElement = document.createElement("div");
+  containerElement.classList.add("settings")
 
   const gridSize = GridSize();
   containerElement.append(gridSize);

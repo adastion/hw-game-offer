@@ -3,7 +3,7 @@ import {
   getMaxMisses,
   setMaxMisses,
 } from "../../../../data/game.data.js";
-import { CreateSelectEl } from "../../CreateSelectEl.js";
+import { CreateSelectEl } from "../../createSelectEl.component.js";
 
 export function MaxMisses() {
   const optionValue = MAX_MISSES;

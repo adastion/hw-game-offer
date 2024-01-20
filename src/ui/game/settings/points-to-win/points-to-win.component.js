@@ -3,7 +3,7 @@ import {
   getSettingsPointsToWin,
   setSettingsPointsToWin,
 } from "../../../../data/game.data.js";
-import { CreateSelectEl } from "../../CreateSelectEl.js";
+import { CreateSelectEl } from "../../createSelectEl.component.js";
 
 export function PointsToWin() {
   const optionValue = POINTS_WIN;

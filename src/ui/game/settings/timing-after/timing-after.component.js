@@ -3,7 +3,7 @@ import {
   getTimeInterval,
   setTimeInterval,
 } from "../../../../data/game.data.js";
-import { CreateSelectEl } from "../../CreateSelectEl.js";
+import { CreateSelectEl } from "../../createSelectEl.component.js";
 
 export function TimingAfterCatch() {
   const optionValue = DECREASE_DELTA_IN_MS;
