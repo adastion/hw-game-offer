@@ -5,7 +5,7 @@ import { PointsToWin } from "./points-to-win/points-to-win.component.js";
 import { TimingAfterCatch } from "./timing-after/timing-after.component.js";
 
 export function Settings() {
-  const containerElement = document.createElement("div");
+  const containerElement = document.createElement("ul");
   containerElement.classList.add("settings")
 
   const gridSize = GridSize();

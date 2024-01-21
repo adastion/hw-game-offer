@@ -1,7 +1,7 @@
 import { setStatusSounds } from "../../../../data/game.data.js";
 
 export function MuteMode() {
-  const settingsItem = document.createElement("div");
+  const settingsItem = document.createElement("li");
   settingsItem.classList.add("select__title")
   settingsItem.textContent = "Mute mode";
 

@@ -1,5 +1,5 @@
 export function CreateSelectEl(optionContent, optionValue, name) {
-  const title = document.createElement("div");
+  const title = document.createElement("li");
   title.classList.add("select__title");
   title.textContent = name;
 
