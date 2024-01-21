@@ -27,7 +27,7 @@ export const data = {
     isMuted: SWITCHING_SOUNDS.off,
   },
   gemeTime: "",
-  gameStatus: GAME_STATE.game,
+  gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
@@ -115,7 +115,7 @@ function runStepInterval() {
 export function start() {
   data.gameStatus = GAME_STATE.game;
   timeCounter();
-  // runStepInterval();
+  runStepInterval();
   notify();
 }
 

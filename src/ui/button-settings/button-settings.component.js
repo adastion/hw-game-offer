@@ -13,6 +13,12 @@ export function SettigsMobile() {
   buttonElement.addEventListener("click", () => {
     settingsPanel.classList.toggle("active");
     bodyElement.classList.toggle("no-scroll");
+
+    if (buttonElement.textContent === "settings menu") {
+      buttonElement.textContent = "close settings";
+    } else {
+      buttonElement.textContent = "settings menu";
+    }
   });
 
   return buttonElement;
