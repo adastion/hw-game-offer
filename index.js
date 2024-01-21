@@ -4,6 +4,7 @@ import { FinishGame } from "./src/ui/Finish/finish.component.js";
 import { Game } from "./src/ui/game/game.component.js";
 import { Settings } from "./src/ui/game/settings/settings.component.js";
 import { StartGeme } from "./src/ui/start/start.component.js";
+import { SettigsMobile } from "./src/ui/button-settings/button-settings.component.js";
 
 const rootElement = document.querySelector("#root");
 rootElement.classList.add("wrapper");
@@ -15,6 +16,11 @@ function renderApp() {
   const settingsElement = Settings();
   rootElement.append(settingsElement);
 
+  const openSettingsMobile = SettigsMobile();
+  if (openSettingsMobile.classList.contains("settings__btn-visible")) {
+    rootElement.append(openSettingsMobile);
+  }
+  
   const mainElement = document.createElement("main");
   mainElement.classList.add("content");
   rootElement.append(mainElement);

@@ -19,6 +19,12 @@
   padding: 30px;
 }
 
+@media screen and (max-width: 768px) {
+  .finish {
+    margin-top: 0;
+  }
+}
+
 .finish__content {
   background: var(--secondary);
   border-radius: 10px;

@@ -6,13 +6,34 @@
   width: 90%;
 }
 
+.settings__btn-visible {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .settings {
     width: 100%;
-    padding: 0 20px;
+    padding: 20px;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    overflow: auto;
+    justify-content: start;
+    position: absolute;
+    margin-top: -100%;
+    z-index: -10;
+    min-height: 100%;
+    backdrop-filter: blur(5px);
+    transition: 0.5s ease;
+  }
+
+  .settings.active {
+    margin-top: 90px;
+    z-index: 10;
+  }
+
+  .settings__btn-visible {
+    display: flex;
   }
 }
 

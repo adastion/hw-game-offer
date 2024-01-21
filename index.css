@@ -42,3 +42,7 @@ body {
   font-family: "Roboto", sans-serif;
   color: var(--secondary);
 }
+
+body.no-scroll {
+  overflow: hidden;
+}

@@ -5,8 +5,16 @@
 }
 
 .content__grid {
-  display: flex;
+  width: 120%;
   gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36px, 2fr));
+}
+
+@media screen and (max-width: 768px) {
+  .content__grid {
+    gap: 8px;
+  }
 }
 
 .content__row {
@@ -20,8 +28,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: clamp(2.625rem, 1.267rem + 5.79vw, 8.438rem);
-  height: clamp(2.625rem, 1.267rem + 5.79vw, 8.438rem);
+
+  aspect-ratio: 1 / 1;
   border-radius: 5px;
   border: 2px solid var(--accent);
   background: var(--primary);
@@ -29,6 +37,5 @@
 
 .content__cell img {
   max-width: 100%;
-  margin: 6px;
   cursor: pointer;
 }
