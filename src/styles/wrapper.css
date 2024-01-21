@@ -13,6 +13,6 @@
 @media screen and (max-width: 768px) {
   .wrapper {
     gap: 10px;
-    min-width: 425px;
+    min-width: 375px;
   }
 }
