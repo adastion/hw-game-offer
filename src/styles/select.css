@@ -39,7 +39,7 @@
 }
 
 .select__title--mute-mod:hover {
-  box-shadow: inset 0 0 5px 2px var(--buttons);
+  box-shadow: 0 0 5px 2px var(--buttons);
 }
 
 .select__title--mute-mod input {
