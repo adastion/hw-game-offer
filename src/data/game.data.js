@@ -27,7 +27,7 @@ const _data = {
     isMuted: SWITCHING_SOUNDS.off,
   },
   gemeTime: "",
-  gameStatus: GAME_STATE.beginning,
+  gameStatus: GAME_STATE.game,
   offerStatus: OFFER_STATUSES.default,
   coords: {
     current: {
