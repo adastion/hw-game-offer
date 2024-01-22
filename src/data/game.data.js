@@ -17,7 +17,7 @@ export const OFFER_STATUSES = {
   caught: "caught",
 };
 
-export const data = {
+const _data = {
   settings: {
     rowsCount: Math.min(...GRID_SIZE),
     columnsCount: Math.min(...GRID_SIZE),
@@ -45,173 +45,178 @@ export const data = {
   },
 };
 
-let subscribers = [];
+let _stepIntervalId;
 
-function notify() {
-  subscribers.forEach((subscriber) => subscriber());
+let _subscribers = [];
+
+function _notify() {
+  _subscribers.forEach((subscriber) => subscriber());
 }
 
-export function subscribe(newSubscriber) {
-  subscribers.push(newSubscriber);
+function _runStepInterval() {
+  _stepIntervalId = setInterval(() => {
+    _missOffer();
+    _moveOfferToRandomPosition();
+    _notify();
+  }, _data.settings.decreaseDeltaInMs * 10);
 }
 
-export function getStatusSounds() {
-  return data.settings.isMuted;
-}
-
-export function setStatusSounds(state) {
-  data.settings.isMuted = state;
-
-  notify();
-}
-
-export function setSettingsGrid(grid) {
-  data.settings.rowsCount = grid;
-  data.settings.columnsCount = grid;
-  notify();
-}
-
-export function getSettingsGrid() {
-  return data.settings.rowsCount;
-}
-
-export function setSettingsPointsToWin(points) {
-  data.settings.pointsToWin = points;
-  notify();
-}
-
-export function getSettingsPointsToWin() {
-  return data.settings.pointsToWin;
-}
-
-export function setTimeInterval(time) {
-  data.settings.decreaseDeltaInMs = time;
-  notify();
-}
-
-export function getTimeInterval() {
-  return data.settings.decreaseDeltaInMs;
-}
-
-export function setMaxMisses(miss) {
-  data.settings.maximumMisses = miss;
-  notify();
-}
-
-export function getMaxMisses() {
-  return data.settings.maximumMisses;
-}
-
-let stepIntervalId;
-
-function runStepInterval() {
-  stepIntervalId = setInterval(() => {
-    missOffer();
-    moveOfferToRandomPosition();
-    notify();
-  }, data.settings.decreaseDeltaInMs * 10);
-}
-
-export function start() {
-  data.gameStatus = GAME_STATE.game;
-  timeCounter();
-  runStepInterval();
-  notify();
-}
-
-function timeCounter() {
-  data.gemeTime = 0;
+function _timeCounter() {
+  _data.gemeTime = 0;
   let minutes = 0;
   let seconds = 0;
 
   const timer = setInterval(() => {
     seconds++;
-    
+
     if (seconds === 60) {
       minutes++;
       seconds = 0;
     }
-    
-    data.gemeTime = `${minutes}m ${seconds}s`;
+
+    _data.gemeTime = `${minutes}m ${seconds}s`;
     // clearInterval(timer)
   }, 1000);
 }
 
-export function getGameTime() {
-  return data.gemeTime;
-}
-
-function gameWin() {
-  if (data.score.caughtCount === data.settings.pointsToWin) {
-    clearInterval(stepIntervalId);
-    data.gameStatus = GAME_STATE.finishGame.win;
+function _gameWin() {
+  if (_data.score.caughtCount === _data.settings.pointsToWin) {
+    clearInterval(_stepIntervalId);
+    _data.gameStatus = GAME_STATE.finishGame.win;
   }
 }
 
-function gameOver() {
-  if (data.score.missCount === data.settings.maximumMisses) {
-    clearInterval(stepIntervalId);
-    data.gameStatus = GAME_STATE.finishGame.lose;
+function _gameOver() {
+  if (_data.score.missCount === _data.settings.maximumMisses) {
+    clearInterval(_stepIntervalId);
+    _data.gameStatus = GAME_STATE.finishGame.lose;
   }
 }
 
-function moveOfferToRandomPosition() {
+function _moveOfferToRandomPosition() {
   let newX = null;
   let newY = null;
 
   do {
-    newX = getRandom(data.settings.columnsCount - 1);
-    newY = getRandom(data.settings.rowsCount - 1);
-  } while (data.coords.current.x === newX && data.coords.current.y === newY);
+    newX = _getRandom(_data.settings.columnsCount - 1);
+    newY = _getRandom(_data.settings.rowsCount - 1);
+  } while (_data.coords.current.x === newX && _data.coords.current.y === newY);
 
-  data.coords.current.x = newX;
-  data.coords.current.y = newY;
+  _data.coords.current.x = newX;
+  _data.coords.current.y = newY;
 }
 
-function missOffer() {
-  data.offerStatus = OFFER_STATUSES.miss;
-  data.score.missCount++;
+function _missOffer() {
+  _data.offerStatus = OFFER_STATUSES.miss;
+  _data.score.missCount++;
 
-  data.coords.previous = {
-    ...data.coords.current,
+  _data.coords.previous = {
+    ..._data.coords.current,
   };
 
   setTimeout(() => {
-    data.offerStatus = OFFER_STATUSES.default;
-    notify();
-  }, (data.settings.decreaseDeltaInMs - 100) * 10);
-  gameOver();
+    _data.offerStatus = OFFER_STATUSES.default;
+    _notify();
+  }, (_data.settings.decreaseDeltaInMs - 100) * 10);
+  _gameOver();
 }
 
-export function catchOffer() {
-  data.offerStatus = OFFER_STATUSES.caught;
-  data.score.caughtCount++;
-  data.coords.previous = {
-    ...data.coords.current,
-  };
-  setTimeout(() => {
-    data.offerStatus = OFFER_STATUSES.default;
-    notify();
-  }, (data.settings.decreaseDeltaInMs - 100) * 10);
-
-  moveOfferToRandomPosition();
-  notify();
-  clearInterval(stepIntervalId);
-  runStepInterval();
-  gameWin();
-}
-
-function getRandom(N) {
+function _getRandom(N) {
   return Math.floor(Math.random() * (N + 1));
 }
 
+//
+export function getData() {
+  return _data;
+}
+
+export function subscribe(newSubscriber) {
+  _subscribers.push(newSubscriber);
+}
+
+export function getStatusSounds() {
+  return _data.settings.isMuted;
+}
+
+export function setStatusSounds(state) {
+  _data.settings.isMuted = state;
+
+  _notify();
+}
+
+export function setSettingsGrid(grid) {
+  _data.settings.rowsCount = grid;
+  _data.settings.columnsCount = grid;
+  _notify();
+}
+
+export function getSettingsGrid() {
+  return _data.settings.rowsCount;
+}
+
+export function setSettingsPointsToWin(points) {
+  _data.settings.pointsToWin = points;
+  _notify();
+}
+
+export function getSettingsPointsToWin() {
+  return _data.settings.pointsToWin;
+}
+
+export function setTimeInterval(time) {
+  _data.settings.decreaseDeltaInMs = time;
+  _notify();
+}
+
+export function getTimeInterval() {
+  return _data.settings.decreaseDeltaInMs;
+}
+
+export function setMaxMisses(miss) {
+  _data.settings.maximumMisses = miss;
+  _notify();
+}
+
+export function getMaxMisses() {
+  return _data.settings.maximumMisses;
+}
+
+export function start() {
+  _data.gameStatus = GAME_STATE.game;
+  _timeCounter();
+  _runStepInterval();
+  _notify();
+}
+
+export function getGameTime() {
+  return _data.gemeTime;
+}
+
+export function catchOffer() {
+  _data.offerStatus = OFFER_STATUSES.caught;
+  _data.score.caughtCount++;
+  _data.coords.previous = {
+    ..._data.coords.current,
+  };
+  setTimeout(() => {
+    _data.offerStatus = OFFER_STATUSES.default;
+    _notify();
+  }, (_data.settings.decreaseDeltaInMs - 100) * 10);
+
+  _moveOfferToRandomPosition();
+  _notify();
+  clearInterval(_stepIntervalId);
+  _runStepInterval();
+  _gameWin();
+}
+
 export function newStartGame() {
-  data.gameStatus = GAME_STATE.beginning;
-  data.score.caughtCount = 0;
-  data.score.missCount = 0;
-  notify();
+  _data.gameStatus = GAME_STATE.beginning;
+  _data.score.caughtCount = 0;
+  _data.score.missCount = 0;
+  _notify();
 }
 
 export function getFinishResult() {
-  return data.score;
+  return _data.score;
 }

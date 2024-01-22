@@ -1,4 +1,4 @@
-import { data, subscribe } from "../../../data/game.data.js";
+import { getData, subscribe } from "../../../data/game.data.js";
 
 export function Scores() {
   subscribe(() => {
@@ -46,8 +46,9 @@ function update(
   valueCatch,
   valueMiss
 ) {
-  valueCatch.textContent = data.score.caughtCount;
-  valueMiss.textContent = data.score.missCount;
+  const _data = getData();
+  valueCatch.textContent = _data.score.caughtCount;
+  valueMiss.textContent = _data.score.missCount;
   containerElement.append(catchElement);
   containerElement.append(missElement);
 }

@@ -1,13 +1,15 @@
 import {
   GAME_STATE,
-  data,
+  getData,
   getFinishResult,
   getGameTime,
 } from "../../data/game.data.js";
 import { PlayAgain } from "../play-again/play-again.component.js";
 import { ResultGame } from "./results/results.component.js";
 
+
 export function FinishGame() {
+  const _data = getData();
   const resultData = getFinishResult();
 
   const containerElement = document.createElement("div");
@@ -21,14 +23,14 @@ export function FinishGame() {
   subtitle.classList.add("finish__subtitle");
   containerElement.append(subtitle);
 
-  if (data.gameStatus === GAME_STATE.finishGame.lose) {
+  if (_data.gameStatus === GAME_STATE.finishGame.lose) {
     containerElement.style.backgroundImage =
       'url("src/assets/images/icon-lose.svg")';
     title.textContent = "You Lose!";
     subtitle.textContent = "You'll be lucky next time";
   }
 
-  if (data.gameStatus === GAME_STATE.finishGame.win) {
+  if (_data.gameStatus === GAME_STATE.finishGame.win) {
     containerElement.style.backgroundImage =
       'url("src/assets/images/icon-win.svg")';
     title.textContent = "You Win!";
