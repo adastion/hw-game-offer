@@ -8,7 +8,6 @@
   width: 122%;
   gap: 12px;
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(36px, 2fr)); */
   grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
 }
 
