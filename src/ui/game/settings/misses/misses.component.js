@@ -17,6 +17,8 @@ export function MaxMisses() {
 
   selectElement.querySelector("select").addEventListener("change", (e) => {
     setMaxMisses(e.target.value);
+    console.log(currentValue)
+    console.log(e.target.value)
   });
 
   return selectElement;

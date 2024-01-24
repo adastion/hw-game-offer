@@ -86,8 +86,8 @@ function _timeCounter() {
       seconds = 0;
     }
 
-    _data.gemeTime = `${minutes}m ${seconds}s`;
     clearInterval(timer);
+    _data.gemeTime = `${minutes}m ${seconds}s`;
   }, 1000);
 }
 
@@ -99,7 +99,7 @@ function _gameWin() {
 }
 
 function _gameOver() {
-  if (_data.score.missCount === _data.settings.maximumMisses) {
+  if (_data.settings.maximumMisses === _data.score.missCount) {
     clearInterval(_stepIntervalId);
     _data.gameStatus = GAME_STATE.finishGame.lose;
   }
@@ -112,7 +112,10 @@ function _moveOfferToRandomPosition() {
   do {
     newX = _getRandom(_data.settings.columnsCount - 1);
     newY = _getRandom(_data.settings.rowsCount - 1);
-  } while (_data.coords.offer.current.x === newX && _data.coords.offer.current.y === newY);
+  } while (
+    _data.coords.offer.current.x === newX &&
+    _data.coords.offer.current.y === newY
+  );
 
   _data.coords.offer.current.x = newX;
   _data.coords.offer.current.y = newY;
@@ -185,7 +188,7 @@ export function getTimeInterval() {
 }
 
 export function setMaxMisses(miss) {
-  _data.settings.maximumMisses = miss;
+  _data.settings.maximumMisses = +miss;
   _notify();
 }
 
@@ -217,7 +220,6 @@ export function catchOffer() {
 
   _moveOfferToRandomPosition();
   _notify();
-  clearInterval(_stepIntervalId);
   _runStepInterval();
   _gameWin();
 }
