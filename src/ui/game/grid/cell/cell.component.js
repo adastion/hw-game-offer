@@ -22,7 +22,7 @@ function update(x, y, cellEl) {
   const _data = getData();
   cellEl.innerHTML = "";
 
-  if (x === _data.coords.current.x && y === _data.coords.current.y) {
+  if (x === _data.coords.offer.current.x && y === _data.coords.offer.current.y) {
     const offerEl = document.createElement("img");
     offerEl.src = "src/assets/images/offer.png";
     offerEl.addEventListener("click", catchOffer);
@@ -31,8 +31,8 @@ function update(x, y, cellEl) {
 
   if (
     _data.offerStatus === OFFER_STATUSES.caught &&
-    x === _data.coords.previous.x &&
-    y === _data.coords.previous.y
+    x === _data.coords.offer.previous.x &&
+    y === _data.coords.offer.previous.y
   ) {
     const offerEl = document.createElement("img");
     offerEl.src = "src/assets/images/caught-offer.png";
@@ -41,8 +41,8 @@ function update(x, y, cellEl) {
 
   if (
     _data.offerStatus === OFFER_STATUSES.miss &&
-    x === _data.coords.previous.x &&
-    y === _data.coords.previous.y
+    x === _data.coords.offer.previous.x &&
+    y === _data.coords.offer.previous.y
   ) {
     const offerEl = document.createElement("img");
     offerEl.src = "src/assets/images/missed-offer.png";

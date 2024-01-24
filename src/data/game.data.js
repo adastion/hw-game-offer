@@ -24,19 +24,31 @@ const _data = {
     pointsToWin: Math.min(...POINTS_WIN),
     maximumMisses: Math.min(...MAX_MISSES),
     decreaseDeltaInMs: Math.max(...DECREASE_DELTA_IN_MS),
-    isMuted: SWITCHING_SOUNDS.off,
+    isMuted: SWITCHING_SOUNDS.on,
   },
   gemeTime: "",
   gameStatus: GAME_STATE.beginning,
   offerStatus: OFFER_STATUSES.default,
   coords: {
-    current: {
-      x: 1,
-      y: 0,
+    offer: {
+      current: {
+        x: 1,
+        y: 0,
+      },
+      previous: {
+        x: 1,
+        y: 2,
+      },
     },
-    previous: {
-      x: 1,
-      y: 2,
+    player: {
+      current: {
+        x: 1,
+        y: 0,
+      },
+      previous: {
+        x: 1,
+        y: 2,
+      },
     },
   },
   score: {
@@ -75,7 +87,7 @@ function _timeCounter() {
     }
 
     _data.gemeTime = `${minutes}m ${seconds}s`;
-    // clearInterval(timer)
+    clearInterval(timer);
   }, 1000);
 }
 
@@ -100,18 +112,18 @@ function _moveOfferToRandomPosition() {
   do {
     newX = _getRandom(_data.settings.columnsCount - 1);
     newY = _getRandom(_data.settings.rowsCount - 1);
-  } while (_data.coords.current.x === newX && _data.coords.current.y === newY);
+  } while (_data.coords.offer.current.x === newX && _data.coords.offer.current.y === newY);
 
-  _data.coords.current.x = newX;
-  _data.coords.current.y = newY;
+  _data.coords.offer.current.x = newX;
+  _data.coords.offer.current.y = newY;
 }
 
 function _missOffer() {
   _data.offerStatus = OFFER_STATUSES.miss;
   _data.score.missCount++;
 
-  _data.coords.previous = {
-    ..._data.coords.current,
+  _data.coords.offer.previous = {
+    ..._data.coords.offer.current,
   };
 
   setTimeout(() => {
@@ -195,8 +207,8 @@ export function getGameTime() {
 export function catchOffer() {
   _data.offerStatus = OFFER_STATUSES.caught;
   _data.score.caughtCount++;
-  _data.coords.previous = {
-    ..._data.coords.current,
+  _data.coords.offer.previous = {
+    ..._data.coords.offer.current,
   };
   setTimeout(() => {
     _data.offerStatus = OFFER_STATUSES.default;
