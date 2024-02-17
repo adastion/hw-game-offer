@@ -185,7 +185,7 @@ export function getTimeInterval() {
 }
 
 export function setMaxMisses(miss) {
-  _data.settings.maximumMisses = miss;
+  _data.settings.maximumMisses = Number(miss);
   _notify();
 }
 
